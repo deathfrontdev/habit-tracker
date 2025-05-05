@@ -1,0 +1,133 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+form {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #219150;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    background-color: #ecf0f1;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 1.5;
+    position: relative;
+}
+
+li span {
+    display: block;
+}
+
+a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #2980b9;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.success-badge {
+    color: green;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.progress-bar {
+    width: 100%;
+    background-color: #f3f3f3;
+}
+
+.progress-bar-inner {
+    height: 25px;
+    background-color: #4caf50;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+
+.progress-bar {
+    width: 100%;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 2px;
+}
+
+.completed {
+    background-color: #4caf50;
+}
+.habit-tracker-header {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #27ae60; /* Зеленый цвет */
+    margin: 40px 0;
+}

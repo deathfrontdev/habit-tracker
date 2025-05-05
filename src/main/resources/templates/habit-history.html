@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История привычек</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .progress-bar {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        .progress-bar-inner {
+            height: 25px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            line-height: 25px;
+            width: 0%;
+            border-radius: 25px;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>История привычек</h1>
+
+    <ul>
+        <th:block th:each="habit : ${habits}">
+            <li>
+                <strong th:text="${habit.name}">Название привычки</strong><br>
+                <span th:text="${habit.description}">Описание привычки</span><br>
+                <h3>Прогресс:
+                    <span th:text="${habit.completionRate}">0.00</span>%
+                </h3>
+                <div class="progress-bar">
+                    <div class="progress-bar-inner" th:style="'width: ' + ${habit.completionRate} + '%'">
+                    </div>
+                </div>
+                <h4>Статистика выполнения по дням:</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Прогресс</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="record : ${habit.records}">
+                        <tr>
+                            <td th:text="${record.date}">2025-05-01</td>
+                            <td>
+                                <span th:text="${habit.isCompleted() ? 'Выполнено' : 'Не выполнено'}">Не выполнено</span>
+                            </td>
+                        </tr>
+                    </th:block>
+
+                    </tbody>
+                </table>
+            </li>
+        </th:block>
+    </ul>
+
+    <br>
+    <a href="/habits">← Назад к списку привычек</a>
+</div>
+</body>
+</html>

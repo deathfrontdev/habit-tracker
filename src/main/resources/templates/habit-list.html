@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+
+  <div class="habit-tracker-header">
+    Habit Tracker
+  </div>
+  <h2>Добавить привычку</h2>
+  <form action="/habits" method="post">
+    <label for="name">Название:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="description">Описание:</label>
+    <input type="text" id="description" name="description" required>
+    <button type="submit">Добавить</button>
+  </form>
+
+  <h2>Мои привычки</h2>
+  <ul>
+    <th:block th:each="habit : ${habits}">
+      <li>
+        <strong th:text="${habit.name}">Название привычки</strong><br>
+        <span th:text="${habit.description}">Описание привычки</span><br>
+
+        <th:block th:if="${doneToday[habit.id]}">
+          <span style="color: green;">✅ Сегодня выполнено</span>
+        </th:block>
+        <th:block th:unless="${doneToday[habit.id]}">
+          <form th:action="@{'/habits/' + ${habit.id} + '/records'}" method="post" style="display:inline;">
+            <input type="hidden" name="date" th:value="${today}"/>
+            <button type="submit">✅ Сделано сегодня</button>
+          </form>
+        </th:block>
+
+        <form th:action="@{/habits/delete/{id}(id=${habit.id})}" method="post" style="display:inline;">
+          <button type="submit">Удалить</button>
+        </form>
+        <a th:href="@{/habits/edit/{id}(id=${habit.id})}">Изменить</a>
+        <a th:href="@{/habits/{id}/records(id=${habit.id})}">История</a>
+      </li>
+    </th:block>
+  </ul>
+  <a th:href="@{/habits/history}">Полная история привычек</a>
+
+</div>
+</body>
+</html>

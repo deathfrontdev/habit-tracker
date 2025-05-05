@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактировать привычку</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <h1>Редактировать привычку</h1>
+  <form th:action="@{/habits/update/{id}(id=${habit.id})}" th:object="${habit}" method="post">
+    <label for="name">Название:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+
+    <label for="description">Описание:</label>
+    <input type="text" id="description" th:field="*{description}" required>
+
+    <button type="submit">Сохранить</button>
+  </form>
+  <br>
+  <a th:href="@{/habits}">← Назад</a>
+</div>
+</body>
+</html>

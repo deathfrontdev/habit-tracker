@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Записи привычки</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .progress-bar {
+            width: 100%;
+            background-color: #f3f3f3;
+        }
+
+        .progress-bar-inner {
+            height: 25px;
+            width: 0;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Записи привычки: ' + ${habit.name}">Записи привычки</h1>
+    <div>
+        <span th:text="'Прогресс: ' + ${progressPercentage} + ' %'">Прогресс: 50%</span>
+        <div class="progress-bar">
+            <div class="progress-bar-inner" th:style="'width: ' + ${progressPercentage} + '%'">
+                <span th:text="${progressPercentage + ' %'}">50 %</span>
+            </div>
+        </div>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Дата</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="record, iterStat : ${records}">
+            <tr>
+                <td th:text="${iterStat.index + 1}">1</td>
+                <td th:text="${record.date}">2025-05-01</td>
+                <td th:text="${record.habit.completed ? 'Выполнено' : 'Не выполнено'}">Не выполнено</td>
+                <td>
+                    <form th:action="@{/habits/records/delete/{recordId}(recordId=${record.id})}" method="post">
+                        <input type="hidden" name="habitId" th:value="${habit.id}"/>
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/habits}">← Назад к списку привычек</a>
+</div>
+</body>
+</html>
